@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<h3 th:text="${title}"></h3>
+	<form th:action="@{/form}" th:object="${user}" method="post">
+		<div>
+			<label for="country">Country</label>
+			<div>
+				<select id="country" th:field="*{country}">
+					<option value="">Seleccionar ...</option>
+					<option th:each="country: ${countriesList}"
+						th:text="${country.name}" th:value="${country.id}"></option>
+				</select>
+			</div>
+			<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
+		</div>
+		<div>
+			<label>Roles</label>
+			<div th:each="role: ${rolesList}">
+				<input type="checkbox" th:field="*{roles}" th:value=${role.id}>
+				<label  th:for="${#ids.prev('roles')}" th:text="${role.name}"></label>
+			</div>
+			<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+		</div>
+		<div>
+			<label for="id">Identificator</label>
+			<div>
+				<input id="id" type="text" th:field="*{id}">
+			</div>
+			<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+		</div>
+		<div>
+			<label for="name">Name</label>
+			<div>
+				<input id="name" type="text" th:field="*{name}">
+			</div>
+			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+		</div>
+		<div>
+			<label for="lastname">Lastname</label>
+			<div>
+				<input id="lastname" type="text" th:field="*{lastname}">
+			</div>
+			<div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+		</div>
+		<div>
+			<label for="username">Username</label>
+			<div>
+				<input id="username" type="text" th:field="*{username}">
+			</div>
+			<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<div>
+				<input id="password" th:field="*{password}" type="password">
+			</div>
+			<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+		</div>
+		<div>
+			<label for="password">Email</label>
+			<div>
+				<input id="email" type="text" th:field="*{email}">
+			</div>
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+		</div>
+
+		<div>
+			<label for="account">Account</label>
+			<div>
+				<input id="account" type="number" th:field="*{account}">
+			</div>
+			<div th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></div>
+		</div>
+
+		<div>
+			<label for="account">Date of Birth</label>
+			<div>
+				<input id="dateOfBirth" type="date" th:field="*{dateOfBirth}"
+					placeholder="yyyy-MM-dd">
+			</div>
+			<div th:if="${#fields.hasErrors('dateOfBirth')}"
+				th:errors="*{dateOfBirth}"></div>
+		</div>
+		<div>
+			<div>
+				<input value="Send" type="submit">
+			</div>
+		</div>
+	</form>
+</body>
+</html>
