@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -141,15 +142,24 @@ public class FormController {
 	
 	
 	@PostMapping("/form")
-	public String processForm(Model model, @Valid User user, BindingResult result, SessionStatus status) {
+	public String processForm(Model model, @Valid User user, BindingResult result) {
 //		userValidator.validate(user, result);
-		model.addAttribute("title", "Formulario Post");
 		if(result.hasErrors()) {
+			model.addAttribute("title", "Formulario Post");
 			return "form";
 		}
-		model.addAttribute("user", user);
+		return "redirect:/see";
+	}
+	
+	@GetMapping("/see")
+	public String see(@SessionAttribute(name = "user", required = false) User user, Model model, SessionStatus status) {
+		model.addAttribute("titulo", "resultado form");
+		if(user == null) {
+			return "redirect:/form";
+		}
 		status.setComplete();
 		return "result";
-	}
+	} 
+	
 	
 }
