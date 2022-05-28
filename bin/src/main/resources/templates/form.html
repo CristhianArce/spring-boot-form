@@ -8,23 +8,6 @@
 <body>
 	<h3 th:text="${title}"></h3>
 	<form th:action="@{/form}" th:object="${user}" method="post">
-
-		<div>
-			<label>Gender</label>
-			<div th:each="gender: ${genderList}">
-				<input type="radio" th:field="*{gender}" th:value="${gender}">
-				<label th:for="${#ids.prev('gender')}" th:text="${gender}"></label>
-			</div>
-			<div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
-		</div>
-		<br>
-		<div>
-			<label for="enable">Enable</label>
-			<div>
-				<input type="checkbox" id="enable" th:field="*{enable}">
-			</div>
-		</div>
-
 		<div>
 			<label for="country">Country</label>
 			<div>
@@ -40,7 +23,7 @@
 			<label>Roles</label>
 			<div th:each="role: ${rolesList}">
 				<input type="checkbox" th:field="*{roles}" th:value=${role.id}>
-				<label th:for="${#ids.prev('roles')}" th:text="${role.name}"></label>
+				<label  th:for="${#ids.prev('roles')}" th:text="${role.name}"></label>
 			</div>
 			<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
 		</div>

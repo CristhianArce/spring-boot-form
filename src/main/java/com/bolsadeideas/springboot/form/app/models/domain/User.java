@@ -53,6 +53,12 @@ public class User {
 	private Country country;
 	@NotEmpty
 	private List<Role> roles;
+	
+	private Boolean enable;
+	@NotEmpty
+	private String gender;
+	@NotEmpty
+	private String secretValue;
 
 	public String getUsername() {
 		return username;
@@ -132,6 +138,30 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Boolean getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getSecretValue() {
+		return secretValue;
+	}
+
+	public void setSecretValue(String secretValue) {
+		this.secretValue = secretValue;
 	}
 
 	

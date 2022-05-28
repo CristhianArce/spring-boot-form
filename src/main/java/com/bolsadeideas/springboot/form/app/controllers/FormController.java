@@ -118,13 +118,22 @@ public class FormController {
 		return roleService.getAll();
 	}
 	
+	@ModelAttribute("genderList")
+	public List<String> gendersList(){
+		return Arrays.asList("Male","Female","Other");
+	}
+	
 	@GetMapping("/form")
 	public String form(Model model) {
 		System.out.println("Get Request");
 		User user = new User();
 		user.setName("Joe");
 		user.setLastname("Doe");
-		user.setId("XLR8");
+		user.setId("12.345.678-D");
+		user.setUsername("carce");
+		user.setAccount(23);
+		user.setEnable(true);
+		user.setSecretValue("Some secret value");
 		model.addAttribute("title", "Formulario de creación de usuarios");
 		model.addAttribute("user", user);
 		return "form";

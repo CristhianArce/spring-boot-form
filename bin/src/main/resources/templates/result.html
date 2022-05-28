@@ -17,13 +17,11 @@
 		<li th:text="${user.id}"></li>
 		<li th:text="${user.country.name}"></li>
 		<li th:text="${#dates.format(user.dateOfBirth, 'dd/MM/yyyy')}"></li>
-		<li th:text="'User is enable:' + ${user.enable}"></li>
-		<li th:text="'Gender: ' + ${user.gender}"></li>
 	</ul>
 	
 	<h4>Roles Information</h4>
 	<ul th:each="role : ${user.roles}">
-		<li th:text="${role.id} + ': '+ ${role.name} + ' => ' + ${role.role}"></li>
+		<li th:text="${role}"></li>
 	</ul>
 </body>
 </html>
